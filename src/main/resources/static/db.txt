@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 31, 2018 at 10:20 PM
+-- Generation Time: Feb 16, 2018 at 04:57 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -11,68 +11,52 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `seating_plan`
+-- Database: `filestore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `floor`
+-- Table structure for table `groups`
 --
 
-CREATE TABLE `floor` (
+CREATE TABLE `groups` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `svg_content` text,
-  `version` int(11) NOT NULL,
-  `created_at` datetime NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `floor`
---
-
-INSERT INTO `floor` (`id`, `name`, `svg_content`, `version`, `created_at`) VALUES
-(1, 'rrrrrrrrr', '<polygon id=\"SvgjsPolygon1019\" points=\"387,137 975,137 975,430 387,430\" fill=\"none\" stroke=\"#000000\" stroke-width=\"10\" cursor=\"move\" data-user-id=\"1\"></polygon>', 0, '2018-01-31 16:14:26');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE `role` (
+CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `role`
+-- Dumping data for table `roles`
 --
 
-INSERT INTO `role` (`id`, `name`) VALUES
+INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'ROLE_ADMIN'),
 (2, 'ROLE_USER');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `computer_address` varchar(100) DEFAULT NULL,
-  `comment` text,
-  `ispi` tinyint(1) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL,
   `temp_password` varchar(255) DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -81,99 +65,52 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `start_date`, `end_date`, `computer_address`, `comment`, `ispi`, `group_id`, `temp_password`, `enabled`, `status`, `updated_at`, `created_at`) VALUES
-(1, 'vkumar', '$2a$10$0hLoD7wrk0YeDdy/S8zivuOJ7o/n8Vus2kR6nqKV8w2Cqcx2wK/Ba', 'Vinod', 'Kumar', 'test@test.com', '2017-12-31', '2018-01-31', '', '', 0, 2, NULL, 1, 0, '2018-01-31 15:05:56', '2018-01-31 14:21:42'),
-(2, 'alex', '$2a$10$mYUNLUBF5UTDztZPCrc.gesNxFQENijemRs4WhwcaF1P.pgUWRC5e', 'Alex', 'Wong', 'alex@kenn.com', '2018-01-17', '2018-01-17', '23442342424', 'test', 1, 2, NULL, 2, 0, '2018-01-31 14:23:55', '2018-01-31 14:22:39');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_roles`
---
-
-CREATE TABLE `users_roles` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_groups`
---
-
-CREATE TABLE `user_groups` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `color` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_groups`
---
-
-INSERT INTO `user_groups` (`id`, `name`, `color`) VALUES
-(1, 'Mike Group', 'dadadada'),
-(2, 'IT Group', 'f06'),
-(3, 'dsadada333', 'FF963B'),
-(4, 'dsdadada', 'dadadada'),
-(5, 'Test', '4F29CC'),
-(6, 'sddasaadasdada', 'FF52A8');
+INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `temp_password`, `enabled`, `status`, `updated_at`, `created_at`) VALUES
+(1, 'vkumar', '$2a$10$2YY1P6JcPB48Im41f1kk3.9AhEE9pucNE5GF9dsTcrJbC9B5hQNky', 'fdfsfsfsfs', 'fsfsfsfsfs', 'v.kumar03@yahoo.com', NULL, 0, 0, NULL, '2018-02-16 15:47:29');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `floor`
+-- Indexes for table `groups`
 --
-ALTER TABLE `floor`
+ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role`
+-- Indexes for table `roles`
 --
-ALTER TABLE `role`
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `user_groups`
---
-ALTER TABLE `user_groups`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `floor`
+-- AUTO_INCREMENT for table `groups`
 --
-ALTER TABLE `floor`
+ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `user_groups`
---
-ALTER TABLE `user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
