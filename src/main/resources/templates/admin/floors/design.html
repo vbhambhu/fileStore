@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/designer">
+<body>
+<div id="page" layout:fragment="content">
+
+    <div id="wrapper">
+
+
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="design-logo"><i class="fa fa-paw" aria-hidden="true"></i> Seating Plan</div>
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <div id="top-panel">
+
+
+                        <input type="hidden"  id="floorid" th:value="${param.id[0]}">
+
+
+
+                        <div class="form-group">
+                            <div class="btn-group btn-group-sm shape-btn" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-success" id="save_svg">Save</button>
+                                <a class="btn btn-primary" th:href=@{/floors}>Go back to admin</a>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="btn-group shape-btn" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-dark" onclick="add_shape('orect')" >
+                                <span class="icon-rectangle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+                            </button>
+                            <button type="button" class="btn btn-dark" onclick="add_shape('hrect')">
+                                <span class="icon-right" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+                            </button>
+                            <button type="button" class="btn btn-dark" onclick="add_shape('crect')">
+                                <span class="icon-square" data-toggle="tooltip" data-placement="top" title="Tooltip on right"></span>
+                            </button>
+                            <button type="button" class="btn btn-dark"onclick="add_shape('line')">
+                                <span class="icon-substract" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+                            </button>
+                            <button type="button" class="btn btn-dark" onclick="add_shape('text')">
+                                <span class="icon-text" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div id="prop_panel">
+                <h5>Shape properties</h5>
+
+                <div class="form-group">
+                    <label>Color</label>
+                    <input class="form-control form-control-sm jscolor" id="shape_color">
+                </div>
+
+                <div class="form-group">
+                    <label>Attach User</label>
+                    <select class="form-control form-control-sm" id="userid">
+                        <option value="0">None</option>
+                        <option
+                                th:each="user : ${users}"
+                                th:value="${user.id}"
+                                th:text="${user.getFullName()}"
+                                th:attr="data-user-name=${user.getsortName()},data-group-color=${user.group.color},data-group-name=${user.group.name}">{name}</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Position</label>
+                    <div class="btn-group btn-group-sm shape-btn" role="group" aria-label="Basic example">
+                        <button type="button" id="to_front" class="btn btn-primary">To Front</button>
+                        <button type="button" id="to_back" class="btn btn-primary">To Back</button>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Left</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="x_pos">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Right</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="y_pos">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Width</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="w_pos">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Height</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="h_pos">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Thick</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="stroke_width">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Angle</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-sm" id="rotation">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="drawing"></div>
+        <!-- /#page-content-wrapper -->
+
+    </div><!-- /#wrapper -->
+
+</div>
+</body>
+</html>

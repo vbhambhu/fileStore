@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/admin">
+<body>
+<div layout:fragment="content">
+
+    <div class='clearfix'>
+        <a href="/users" class="btn btn-dark pull-right">Cancel</a>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <form action="#" th:action="@{/group/add}" th:object="${group}" method="post">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" th:field="*{name}" class="form-control" >
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Color</label>
+                    <input type="text" th:field="*{color}" class="form-control jscolor" >
+                    <div th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Error</div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Create</button>
+            </form>
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>
+

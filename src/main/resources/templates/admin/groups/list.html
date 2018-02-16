@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/admin">
+<body>
+<div layout:fragment="content">
+
+    <div class='clearfix'>
+        <a href="/group/add" class="btn btn-dark pull-right">Add new</a>
+    </div>
+
+    <hr>
+
+    <table class="table datatable table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Group</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="group : ${groups}">
+            <td> <i class="fa fa-square color" aria-hidden="true"  th:attr="data-color=${group.color}"></i> <span th:text="${group.name}"></span></td>
+            <td><a th:href="@{/group/edit(id=${group.id})}"  th:text="Edit">...</a></td>
+            <td><a th:href="@{/group/edit(id=${group.id})}" th:text="Delete">...</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
+
+

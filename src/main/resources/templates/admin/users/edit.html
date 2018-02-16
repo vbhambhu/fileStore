@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/admin">
+<body>
+<div layout:fragment="content">
+
+
+    <div class='clearfix'>
+        <a href="/users" class="btn btn-dark pull-right">Cancel</a>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <form action="#" th:action="@{/user/edit(id=${user.id})}" th:object="${user}" method="post">
+                <input type="hidden" th:field="${user.id}" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>First name</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('firstName')} ? is-invalid" th:field="${user.firstName}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last name</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('lastName')} ? is-invalid" th:field="${user.lastName}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error</div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label>Username</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('username')} ? is-invalid" th:field="${user.username}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('email')} ? is-invalid" th:field="${user.email}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label>Start Date</label>
+                        <input type="text" class="form-control datepicker" th:classappend="${#fields.hasErrors('startDate')} ? is-invalid" th:field="${user.startDate}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Error</div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>End Date</label>
+                        <input type="text" class="form-control datepicker" th:classappend="${#fields.hasErrors('endDate')} ? is-invalid" th:field="${user.endDate}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Error</div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>IP Address</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('computerAddress')} ? is-invalid" th:field="${user.computerAddress}" />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('computerAddress')}" th:errors="*{computerAddress}">Error</div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Group</label>
+                        <select class="form-control" th:field="${user.group}" >
+                            <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.id}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input"  th:field="*{PI}">
+                        <label class="form-check-label">Is PI?</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Comment</label>
+                    <textarea class="form-control"  th:field="${user.comment}"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>
+

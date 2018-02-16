@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald');
+@import url('https://fonts.googleapis.com/css?family=Itim');
+
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?4iokpz');
+    src:  url('fonts/icomoon.eot?4iokpz#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?4iokpz') format('truetype'),
+    url('fonts/icomoon.woff?4iokpz') format('woff'),
+    url('fonts/icomoon.svg?4iokpz#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.42857143;
+}
+
+
+.shadow {
+    fill: #94d31b;
+    box-shadow: 10px 10px 5px #888888;
+    -webkit-filter: drop-shadow( -5px -5px 5px #000 );
+    filter: drop-shadow( -5px -5px 5px #000 );
+    -webkit-svg-shadow: 0 0 7px #53BE12;
+}
+
+
+.account-box{
+    margin-top: 150px;
+}
+
+
+.usernames{
+
+    fill: #FFF;
+    -webkit-font-smoothing: antialiased;
+    /*font-family: 'Itim', cursive;*/
+    font-size: 13px;
+    /*text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;*/
+
+/*{ fill: '#000' , weight: 300, size:12 }*/
+}
+
+.userDetail{
+
+    font-weight: bold;
+
+}
+
+#wrapper {
+    padding-left: 250px;
+}
+
+
+
+#sidebar {
+    z-index: 1000;
+    background: #1e2835;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: auto;
+    color: #fff;
+}
+
+#top-panel{
+    padding: 10px;
+}
+
+
+#drawing {
+    font-size: 10px;
+    background-size: 10px 10px;
+    background-image: linear-gradient(to right, #f2f2f2 1px, transparent 1px), linear-gradient(to bottom, #f2f2f2 1px, transparent 1px);
+}
+
+
+.design-logo{
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+    background-color: #222e3e;
+    font-weight: 700;
+}
+
+
+.btn-group.shape-btn {
+    display: flex;
+}
+
+.shape-btn .btn {
+    flex: 1
+}
+
+
+#prop_panel{
+    padding: 10px;
+    font-size: 12px;
+    display: none;
+}
+
+
+
+#shape-list{
+    margin-top: 20px;
+}
+
+.tooltip-inner {
+    color: #000;
+    background-color: #ffdd0a;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: #ffdd0a;
+    color: #000;
+}
+
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before, .tooltip.bs-tooltip-right .arrow::before {
+    border-right-color: #ffdd0a;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #ffdd0a;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=left] .arrow::before, .tooltip.bs-tooltip-left .arrow::before {
+    border-left-color: #ffdd0a;
+}
+
+
+
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-rectangle:before {
+    content: "\e900";
+}
+.icon-right:before {
+    content: "\e901";
+}
+.icon-square:before {
+    content: "\e902";
+}
+.icon-substract:before {
+    content: "\e903";
+}
+.icon-text:before {
+    content: "\e904";
+}
+
+
+
+.svg_select_points_lt{
+    cursor: nw-resize;
+    fill: #007dfc;
+}
+.svg_select_points_rt{
+    cursor: ne-resize;
+    fill: #007dfc;
+}
+.svg_select_points_rb{
+    cursor: se-resize;
+    fill: #007dfc;
+}
+.svg_select_points_lb{
+    cursor: sw-resize;
+    fill: #007dfc;
+}
+.svg_select_points_t{
+    cursor: n-resize;
+    fill: #007dfc;
+}
+.svg_select_points_r{
+    cursor: e-resize;
+    fill: #007dfc;
+}
+.svg_select_points_b{
+    cursor: s-resize;
+    fill: #007dfc;
+}
+.svg_select_points_l{
+    cursor: w-resize;
+    fill: #007dfc;
+}
+
+.svg_select_points_rot{
+    stroke-width:1;
+    stroke:black;
+    fill: #007dfc;
+}
+
+.svg_select_points_point{
+    cursor: move;
+}
+
+.svg_select_boundingRect{
+    stroke-width:1;
+    fill:#fff;
+    stroke-dasharray:10 10;
+    stroke:#007dfc;
+    fill-opacity:0.1;
+    pointer-events:none; /* This ons is needed if you want to deselect or drag the shape*/
+}
