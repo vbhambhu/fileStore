@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        String pass = (user.getPassword() == null) ? user.getTempPassword() : user.getPassword();
+        String pass = user.getPassword();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 pass,

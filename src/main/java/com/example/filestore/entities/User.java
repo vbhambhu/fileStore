@@ -33,7 +33,7 @@ public class User {
 
     private String password;
 
-    private String tempPassword;
+    private String loginToken;
 
     private boolean enabled;
 
@@ -45,21 +45,21 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_roles",
+            name = "users_to_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_groups",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "group_id", referencedColumnName = "id"))
-    private List<Group> groups;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_groups",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "group_id", referencedColumnName = "id"))
+//    private List<Group> groups;
 
     public Long getId() {
         return id;
@@ -111,12 +111,12 @@ public class User {
         this.password = password;
     }
 
-    public String getTempPassword() {
-        return tempPassword;
+    public String getLoginToken() {
+        return loginToken;
     }
 
-    public void setTempPassword(String tempPassword) {
-        this.tempPassword = tempPassword;
+    public void setLoginToken(String loginToken) {
+        this.loginToken = loginToken;
     }
 
     public int getStatus() {
@@ -161,13 +161,13 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
+//    public List<Group> getGroups() {
+//        return groups;
+//    }
+//
+//    public void setGroups(List<Group> groups) {
+//        this.groups = groups;
+//    }
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;

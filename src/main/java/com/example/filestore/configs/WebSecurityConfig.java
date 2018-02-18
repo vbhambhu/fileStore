@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/css/**", "/js/**", "/login/**",
-                        "/register/**", "/forgot-password/**","/user/**",
+                        "/password/update/**", "/password/reset","/user/**",
                         "/admin/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/")

@@ -1,13 +1,18 @@
 package com.example.filestore.controllers;
 
 
+import com.example.filestore.entities.ActionStatus;
+import com.example.filestore.entities.PasswordResetForm;
+import com.example.filestore.entities.PasswordUpdateForm;
 import com.example.filestore.entities.User;
 import com.example.filestore.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -28,9 +33,32 @@ public class AccountController {
         return "account/register";
     }
 
-    @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
-    public String forgotPassForm(){
-        return "account/forgot";
+    @RequestMapping(value = "/password/reset", method = RequestMethod.GET)
+    public String passwordReset(PasswordResetForm passwordResetForm){
+        return "account/password_reset";
+    }
+
+    @RequestMapping(value = "/password/reset", method = RequestMethod.POST)
+    public String validateAndSendPasswordRestLink(@RequestParam(name = "email") String email,
+                                                  @Valid PasswordResetForm passwordResetForm,
+                                                  BindingResult bindingResult,
+                                                  Model model){
+
+        if(bindingResult.hasErrors()){
+            return "account/password_reset";
+        } else if(!userService.isValidEmailAddress(passwordResetForm.getEmail())){
+            bindingResult.rejectValue("email", "email", "Invalid email address. No account exists with this email.");
+            return "account/password_reset";
+        }
+
+
+        ActionStatus actionStatus = userService.sendPasswordRestLink(email);
+
+        model.addAttribute("message", "Reset email sent.Please check your email and follow the instructions.");
+        return "account/message";
+
+
+
     }
 
 
@@ -41,6 +69,7 @@ public class AccountController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String validateAndSaveUser(@Valid User user, BindingResult bindingResult){
+
         if(!userService.usernameExists(user.getUsername())){
             bindingResult.rejectValue("username", "username", "Username already exists.");
         } else if(!userService.emailExists(user.getEmail())){
@@ -54,6 +83,56 @@ public class AccountController {
         userService.create(user);
 
         return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/password/update", method = RequestMethod.GET)
+    public String templogin(@RequestParam(name = "token", required = false) String token,
+                            Model model, PasswordUpdateForm passwordUpdateForm){
+
+        if(token == null){
+            return "account/invalid_token";
+        }
+
+        if(!userService.checkLoginToken(token)){
+            return "account/invalid_token";
+        }
+
+        model.addAttribute("token", token);
+
+        return "account/password_update";
+    }
+
+    @RequestMapping(value = "/password/update", method = RequestMethod.POST)
+    public String activateAccount(@RequestParam(name = "token", required = true) String token,
+                                  @Valid PasswordUpdateForm passwordUpdateForm,
+                                  BindingResult bindingResult,
+                                  Model model){
+
+
+        if(!userService.checkLoginToken(token)){
+            return "account/invalid_token";
+        }
+
+        model.addAttribute("token", token);
+
+        if(!passwordUpdateForm.getPassword().equals(passwordUpdateForm.getConfirmPassword())){
+            bindingResult.rejectValue("password","passwordResetForm.password", "New Password and Verify New Password did not match.");
+        }
+
+        if(bindingResult.hasErrors()){
+            return "account/password_update";
+        }
+
+        //reset password and activate account
+
+        userService.activateAccountByToke(token, passwordUpdateForm.getPassword());
+
+
+
+        System.out.println("all okkkkk");
+
+        return "account/message";
+
     }
 
 
